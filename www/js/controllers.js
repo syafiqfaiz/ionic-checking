@@ -19,7 +19,7 @@ angular.module('app.controllers', [])
   }).pop()
 })
    
-.controller('getLocationCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, LocalStorage) {
+.controller('getLocationCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, LocalStorage, ReverseGeocoder) {
   $cordovaGeolocation.getCurrentPosition({
     timeout: 20000,
     maximumAge: 300000,
@@ -29,6 +29,13 @@ angular.module('app.controllers', [])
     console.log(results)
     $scope.latitude = results.coords.latitude;
     $scope.longitude = results.coords.longitude;
+    ReverseGeocoder.get(results.coords.latitude, results.coords.longitude)
+      .then(function(results){
+        $scope.address = results.address;
+        $scope.map = results.map;
+      }, function(error){
+        console.log(error)
+      });
   }, function(){
     console.log('error')
   })
@@ -43,6 +50,7 @@ angular.module('app.controllers', [])
       longitude: $scope.longitude,
       address: $scope.address,
       description: $scope.description,
+      map: $scope.map,
     });
     LocalStorage.set('checkings', $scope.checkings)
     $state.go('listing');

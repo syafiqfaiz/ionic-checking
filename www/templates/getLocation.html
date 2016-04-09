@@ -1,7 +1,7 @@
 <ion-view title="Get Location" id="page3">
   <ion-content overflow-scroll="true" padding="true" class="has-header">
     <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-      <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      <img ng-src="{{$parent.map}}" style="width: 100%;"
     </div>
     <form class="list" name="locationForm">
       <label class="item item-input" name="latitude">
@@ -14,7 +14,7 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Address</span>
-        <input ng-model='$parent.address' type="text" placeholder="">
+        <textarea ng-model='$parent.address' type="text" placeholder=""></textarea>
       </label>
       <label class="item item-input">
         <span class="input-label">Remark</span>
