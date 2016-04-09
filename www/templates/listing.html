@@ -1,0 +1,11 @@
+<ion-view title="Listing" id="page1">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <ion-list>
+            <ion-item ng-repeat='checking in checkings' ui-sref="locationDetails({id: checking.id})">
+              {{checking.address}}
+              <ion-option-button ng-click="deleteChecking(checking)"class="button-assertive">Delete</ion-option-button>
+            </ion-item>
+        </ion-list>
+        <a ui-sref="getLocation" id="listing-button1" class="button button-positive  button-block">Checkin!</a>
+    </ion-content>
+</ion-view>
